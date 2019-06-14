@@ -18,4 +18,8 @@
 			<item value="org.springsource.ide.eclipse.boot.wizards.category"/>
 		</list>
 	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="531"/>
+		<item key="DIALOG_Y_ORIGIN" value="143"/>
+	</section>
 </section>

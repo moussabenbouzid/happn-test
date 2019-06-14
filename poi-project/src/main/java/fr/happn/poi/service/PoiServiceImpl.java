@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +17,8 @@ import fr.happn.poi.model.Result;
 
 @Component
 public class PoiServiceImpl implements PoiService {
+	
+    private static final Logger logger = LogManager.getLogger(PoiServiceImpl.class);
 
 	@Override
 	public List<Poi> parsePoi(MultipartFile multipart) {
@@ -23,7 +27,7 @@ public class PoiServiceImpl implements PoiService {
 		List<Poi> result = new ArrayList<>();
 		try {
 			String line;
-			boolean isFirstLine = true;;
+			boolean isFirstLine = true;
 			InputStream is = multipart.getInputStream();
 			br = new BufferedReader(new InputStreamReader(is));
 			br.skip(1);
@@ -37,19 +41,27 @@ public class PoiServiceImpl implements PoiService {
 				result.add(poi);
 			}
 		} catch (IOException e) {
-			System.err.println(e.getMessage());       
+			logger.error(e.getMessage());
 		}
 		return result;
 	}
 
 	@Override
-	public Result calculPoisByZone(float minLat, float maxLat, float mintLon, float maxLon, List<Poi> listPois) {
+	public Result calculPoisByZone(float minLat, float maxLat, float minLon, float maxLon, List<Poi> listPois) {
 		
-		return null;
+		List<Poi> poisByZone = new ArrayList<>();
+		for(Poi poi : listPois) {
+			if(poi.getLat() > minLat && poi.getLat() < maxLat && poi.getLon() > minLon && poi.getLon() < maxLon) {
+				poisByZone.add(poi);
+			}
+		}
+		return new Result(poisByZone, poisByZone.size());
 	}
 
 	@Override
 	public Result getMostFilledAreas(int nbZones) {
+		
+		
 		return null;
 	}
 

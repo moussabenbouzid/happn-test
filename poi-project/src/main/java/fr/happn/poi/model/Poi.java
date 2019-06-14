@@ -1,7 +1,10 @@
 package fr.happn.poi.model;
 
-public class Poi {
+import java.io.Serializable;
 
+public class Poi implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private float lat;
 	private float lon;

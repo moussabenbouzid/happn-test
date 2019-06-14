@@ -6,6 +6,14 @@ public class Result {
 
 	private List<Poi> listPoi;
 	private int nbZones;
+	
+	public Result() {}
+	
+	public Result(List<Poi> listPoi, int nbZones) {
+		super();
+		this.listPoi = listPoi;
+		this.nbZones = nbZones;
+	}
 	public List<Poi> getListPoi() {
 		return listPoi;
 	}
