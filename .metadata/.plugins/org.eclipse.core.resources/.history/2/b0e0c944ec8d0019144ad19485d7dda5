@@ -1,0 +1,25 @@
+package fr.happn.poi.service;
+
+import fr.happn.poi.model.Result;
+
+public class PoiServiceImpl implements PoiService {
+
+	@Override
+	public String parsePoi() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result calculPoisByZone(float minLat, float maxLat, float mintLon, float maxLon) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result getMostFilledAreas(int nbZones) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

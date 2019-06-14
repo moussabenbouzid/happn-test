@@ -1,0 +1,11 @@
+package fr.happn.poi;
+
+
+@SpringBootApplication
+public class PoiProjectApplication {
+
+	public static void main(String[] args) {
+		System.out.println("okkkkk");
+	}
+
+}

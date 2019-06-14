@@ -1,0 +1,27 @@
+package fr.happn.poi.controller;
+
+import java.io.File;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import fr.happn.poi.model.Poi;
+import fr.happn.poi.service.PoiService;
+
+@RestController
+public class PoiController {
+
+	@Autowired
+	private PoiService service;
+	
+	@PostMapping("/parse")
+	public int parsePoi(@RequestBody File file) {
+		int x = 3;
+		System.out.println("mon x "+ x);
+		return x;
+	}
+	
+}

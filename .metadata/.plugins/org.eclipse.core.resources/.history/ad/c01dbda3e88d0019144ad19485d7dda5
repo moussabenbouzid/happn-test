@@ -1,0 +1,33 @@
+package fr.happn.poi;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+
+@SpringBootApplication
+public class PoiProjectApplication {
+
+	private static CSVReaderBuilder readerBuilder;
+
+	public static void main(String[] args) throws IOException {
+		System.out.println("okkkkk");
+
+        readerBuilder = new CSVReaderBuilder(new FileReader("C:/Users/EI-PC-01-06-16/Documents/"
+        		+ "happn_projet2/poi-project/target/classes/fr/happn/poi/poi.tsv"));
+        
+        try (CSVReader reader = readerBuilder.withSkipLines(0).build()) {
+        	String[] nextLine;
+    		while ((nextLine = reader.readNext()) != null) {
+    			System.out.println(nextLine[0]);
+    		}
+        }
+        
+        
+	}
+	
+
+}
