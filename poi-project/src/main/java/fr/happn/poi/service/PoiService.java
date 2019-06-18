@@ -1,6 +1,7 @@
 package fr.happn.poi.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +12,7 @@ public interface PoiService {
 
 	public List<Poi> parsePoi(MultipartFile multipart);
 	public Result calculPoisByZone(float minLat, float maxLat, float minLon, float maxLon, List<Poi> listPois);
-	public Result getMostFilledAreas(int nbZones);
+	public Set<String> getMostFilledAreas(int nbZones, List<Poi> listPois);
 	
 	
 }

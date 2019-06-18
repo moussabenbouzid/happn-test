@@ -1,0 +1,9 @@
+
+\squid:S1481D"(Remove this unused "poi" local variable.(È”Ëÿ8Û×ÃÒµ-HµRMINORZ
+CODE_SMELL
+tsquid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8í±ïÓµ-HÃRMINORZ
+CODE_SMELL
+{squid:S1854C"GRemove this useless assignment to local variable "listMostFilledAreas".(„çæÜ8í±ïÓµ-HÄRMAJORZ
+CODE_SMELL
+lsquid:S1481C"8Remove this unused "listMostFilledAreas" local variable.(„çæÜ8í±ïÓµ-HÅRMINORZ
+CODE_SMELL

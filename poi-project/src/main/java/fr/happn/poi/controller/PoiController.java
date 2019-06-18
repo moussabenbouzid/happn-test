@@ -2,6 +2,7 @@ package fr.happn.poi.controller;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,8 +23,8 @@ import fr.happn.poi.service.PoiServiceImpl;
 
 @RestController
 public class PoiController {
-	
-    private static final Logger logger = LogManager.getLogger(PoiController.class);
+
+	private static final Logger logger = LogManager.getLogger(PoiController.class);
 
 	@Autowired
 	private PoiService service;
@@ -36,15 +37,37 @@ public class PoiController {
 		return listPois;
 
 	}
+	
+	@GetMapping("/getAll")
+	public List<Poi> getAllPois(HttpServletRequest request){
+		return (List<Poi>) request.getSession().getAttribute("listPois");
+	}
+	
+	@GetMapping("/getById/{id}")
+	public Poi getPoiById(@PathVariable String id, HttpServletRequest request){
+		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute("listPois");
+		return null;
+	}
+	
 
-	@GetMapping("poisbyzone/{minLat}/{maxLat}/{mintLon}/{maxLon}")
-	public Result calculPoisByZone(@PathVariable float minLat,@PathVariable float maxLat,@PathVariable float mintLon,@PathVariable float maxLon, HttpServletRequest request){
+	@GetMapping("/poisbyzone/{minLat}/{maxLat}/{mintLon}/{maxLon}")
+	public Result calculPoisByZone(@PathVariable float minLat,@PathVariable float maxLat,
+			@PathVariable float mintLon,@PathVariable float maxLon, HttpServletRequest request){
 
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute("listPois");
 		if(listPois == null) {
 			return new Result();
 		}
 		return service.calculPoisByZone(minLat, maxLat, mintLon, maxLon, listPois);
+	}
+	
+	@GetMapping("MostFilledAreas/{nbZones}")
+	public Set<String> getMostFilledAreas(@PathVariable int nbZones, HttpServletRequest request) {
+		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute("listPois");
+		if(listPois == null) {
+			return null;
+		}
+		return service.getMostFilledAreas(nbZones, listPois);
 	}
 
 

@@ -17,6 +17,14 @@ public class Poi implements Serializable {
 		this.lat = lat;
 		this.lon = lon;
 	}
+	
+	
+	public Poi(float lat, float lon) {
+		super();
+		this.lat = lat;
+		this.lon = lon;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -34,6 +42,11 @@ public class Poi implements Serializable {
 	}
 	public void setLon(float lon) {
 		this.lon = lon;
+	}
+
+	@Override
+	public String toString() {
+		return "Poi [id=" + id + ", lat=" + lat + ", lon=" + lon + "]";
 	}
 	
 	

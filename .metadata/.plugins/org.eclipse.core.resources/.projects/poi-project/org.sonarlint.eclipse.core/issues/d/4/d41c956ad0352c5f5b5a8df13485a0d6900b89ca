@@ -1,0 +1,11 @@
+
+†squid:UselessImportCheck"@Remove this unused import 'fr.happn.poi.service.PoiServiceImpl'.(³¶µöüÿÿÿÿ8¸‘á³µ-HêRMINORZ
+CODE_SMELL
+psquid:S1854/"<Remove this useless assignment to local variable "listPois".(á›Ôè8ë¤Ê¹µ-HšRMAJORZ
+CODE_SMELL
+^squid:S1068"*Remove this unused "logger" private field.(ÝƒöŸ8¸‘á³µ-HëRMAJORZ
+CODE_SMELL
+€squid:S1192#"IDefine a constant instead of duplicating this literal "listPois" 5 times.(°‡ü8ä¼›¹µ-HýRCRITICALZ
+CODE_SMELL
+asquid:S1481/"-Remove this unused "listPois" local variable.(á›Ôè8ë¤Ê¹µ-H›RMINORZ
+CODE_SMELL
