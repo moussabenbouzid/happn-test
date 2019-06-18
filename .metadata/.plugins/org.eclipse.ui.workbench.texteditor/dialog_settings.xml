@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="pro"/>
+		<item key="selection" value="Key :"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="prof"/>
-			<item value="pro"/>
-			<item value="pom"/>
-			<item value="\"/>
+			<item value="Key :"/>
+			<item value="_LON"/>
+			<item value="LON"/>
+			<item value="LAT"/>
+			<item value="SEPARATOR"/>
+			<item value="test"/>
+			<item value="HashMap"/>
+			<item value="&quot;,&quot;"/>
+			<item value="&quot;"/>
+			<item value="&quot;maxLon&quot;"/>
+			<item value="&quot;maxLat&quot;"/>
+			<item value="&quot;minLat:&quot;"/>
+			<item value="&quot;minLon:&quot;"/>
+			<item value="&quot;, &quot;"/>
+			<item value="lonmax"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SEPARATOR_COMMA"/>
+			<item value="TreeMap"/>
+			<item value="SEPARATOR"/>
+			<item value="MAX_LON"/>
+			<item value="MAX_LAT"/>
+			<item value="MIN_LAT"/>
+			<item value="MIN_LON"/>
+			<item value="lonMax"/>
+			<item value="lonMin"/>
+			<item value="latMax"/>
+			<item value="latMin"/>
+			<item value="valueAbs"/>
 			<item value="/"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="568"/>
-		<item key="DIALOG_Y_ORIGIN" value="244"/>
+		<item key="DIALOG_X_ORIGIN" value="1105"/>
+		<item key="DIALOG_Y_ORIGIN" value="79"/>
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

@@ -46,7 +46,7 @@ public class PoiController {
 	@GetMapping("/getById/{id}")
 	public Poi getPoiById(@PathVariable String id, HttpServletRequest request){
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute("listPois");
-		return null;
+		return listPois.get(0);
 	}
 	
 

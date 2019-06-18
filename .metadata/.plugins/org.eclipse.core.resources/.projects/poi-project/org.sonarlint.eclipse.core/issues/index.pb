@@ -41,3 +41,5 @@ h
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 f
 6src/main/java/fr/happn/poi/service/PoiServiceImpl.java,2\0\20d2c063d230e2908eed7d48cd2711fc0fe88d7a
+^
+.src/main/java/fr/happn/poi/model/PoiRound.java,8\4\84e55209218635eb863e73d7f8e5c0d303999c5f
