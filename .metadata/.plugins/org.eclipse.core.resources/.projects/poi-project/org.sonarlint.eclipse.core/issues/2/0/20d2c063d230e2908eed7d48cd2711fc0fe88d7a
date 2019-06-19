@@ -1,15 +1,0 @@
-
-q
-squid:S106\"9Replace this use of System.out or System.err by a logger.(‘Şìóÿÿÿÿÿ8Äà¿«¶-H©RMAJORZ
-CODE_SMELL
-asquid:S1125W"(Remove the literal "true" boolean value.(Ôï—ƒûÿÿÿÿ8ÃÛíĞ¶-HªRMINORZ
-CODE_SMELL
-xsquid:S3358h"DExtract this nested ternary operation into an independent statement.(Ÿ¿Øı8ËÛÛÓ¶-H«RMAJORZ
-CODE_SMELL
-asquid:S1125V"(Remove the literal "true" boolean value.(„–üÒûÿÿÿÿ8ÃÛíĞ¶-H¥RMINORZ
-CODE_SMELL
-xsquid:S3358h"DExtract this nested ternary operation into an independent statement.(Ÿ¿Øı8ËÛÛÓ¶-H RMAJORZ
-CODE_SMELL
-l
-squid:S106_"9Replace this use of System.out or System.err by a logger.(å¹ßò8ÿÿŠÜ¶-HRMAJORZ
-CODE_SMELL

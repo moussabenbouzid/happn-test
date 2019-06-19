@@ -30,6 +30,7 @@ public class PoiServiceImpl implements PoiService {
     private static final Logger logger = LogManager.getLogger(PoiServiceImpl.class);
     private static final String SEPARATOR_COMMA = ", ";
     private static final String SEPARATOR_COLONS = ":";
+    private static final String SEPARATOR_TAB = " ";
     private static final String MIN_LAT = "minLat";
     private static final String MAX_LAT = "maxLat";
     private static final String MIN_LON = "minLon";
@@ -51,7 +52,7 @@ public class PoiServiceImpl implements PoiService {
 					isFirstLine = false;
 					continue;
 				}
-				String[] split = line.split(" ");
+				String[] split = line.split(SEPARATOR_TAB);
 				Poi poi = new Poi(split[0], Float.parseFloat(split[1]), Float.parseFloat(split[2]));
 				result.add(poi);
 			}
@@ -85,19 +86,16 @@ public class PoiServiceImpl implements PoiService {
 			poiRound.setPoi(new Poi(latRounded, lonRounded));
 			poiRound.setLatRound(latRounded != poi.getLat()?true:false);
 			poiRound.setLonRound(lonRounded != poi.getLon()?true:false);
-			
 			listPoiRounded.add(poiRound);
-		}
-		for(PoiRound poiRound : listPoiRounded) {
-			System.out.println(poiRound.toString());
+			logger.debug(poiRound.toString());
 		}
 		Map<String, Integer> mapPoiSorted = this.countAreasFilled(listPoiRounded);
-		mapPoiSorted.forEach((k,v)->System.out.println("Key : " + k + " Value : " + v));
-		Map<String , Integer> myNewMap = mapPoiSorted.entrySet().stream()
+		mapPoiSorted.forEach((k,v)->logger.debug("Key : " + k + " Value : " + v));
+		Map<String , Integer> result = mapPoiSorted.entrySet().stream()
 			    .limit(nbZones)
 			    .collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
 		
-		return myNewMap.keySet();
+		return result.keySet();
 	}
 	
 	private float roundLowHalf(float value) {

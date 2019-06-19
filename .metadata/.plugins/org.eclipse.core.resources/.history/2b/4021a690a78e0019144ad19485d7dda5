@@ -1,9 +1,0 @@
-package fr.happn.poi.model;
-
-import java.util.List;
-
-public class Result {
-
-	private List<Poi> listPoi;
-	private int nbZones;
-}

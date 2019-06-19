@@ -1,8 +1,0 @@
-package fr.happn.poi.model;
-
-public class Poi {
-
-	private int id;
-	private float lat;
-	private float lon;
-}

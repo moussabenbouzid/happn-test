@@ -1,13 +1,0 @@
-
-Äsquid:S1192$"IDefine a constant instead of duplicating this literal "listPois" 5 times.(∞á¸ê8‰ºõπµ-HÁRCRITICALZ
-CODE_SMELL
-^squid:S1068"*Remove this unused "logger" private field.(›Éˆü8∏ë·≥µ-HÍRMAJORZ
-CODE_SMELL
-psquid:S18540"<Remove this useless assignment to local variable "listPois".(·õ‘Ë8Î§ πµ-HÎRMAJORZ
-CODE_SMELL
-asquid:S14810"-Remove this unused "listPois" local variable.(·õ‘Ë8Î§ πµ-HÈRMINORZ
-CODE_SMELL
-_squid:S1168D"+Return an empty collection instead of null.(•πÔç8ßπò⁄∂-HÖRMAJORZ
-CODE_SMELL
-Üsquid:UselessImportCheck"@Remove this unused import 'fr.happn.poi.service.PoiServiceImpl'.(≥∂µˆ¸ˇˇˇˇ8∏ë·≥µ-HËRMINORZ
-CODE_SMELL
