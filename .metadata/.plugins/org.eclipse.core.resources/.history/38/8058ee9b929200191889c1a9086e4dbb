@@ -1,0 +1,2 @@
+#for package fr.happn.poi using DEBUG level
+logging.level.fr.happn.poi.logger=DEBUG

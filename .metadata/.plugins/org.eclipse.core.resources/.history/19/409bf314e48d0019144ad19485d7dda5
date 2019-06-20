@@ -1,0 +1,28 @@
+package fr.happn.poi;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.opencsv.CSVReader;
+
+@SpringBootApplication
+public class PoiProjectApplication {
+
+	private static CSVReader reader;
+
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws IOException {
+		System.out.println("okkkkk");
+		reader = new CSVReader(new FileReader("../../../resources/static/poi.tsv"),'\t');
+		String[] record;
+        while ((record = reader.readNext()) != null) {
+            for (String value : record) {
+                System.out.println(value); // Debug only
+            }
+        }
+	}
+
+}

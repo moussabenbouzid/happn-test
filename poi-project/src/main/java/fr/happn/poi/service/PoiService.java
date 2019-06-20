@@ -11,7 +11,7 @@ import fr.happn.poi.model.Result;
 public interface PoiService {
 
 	public List<Poi> parsePoi(MultipartFile multipart);
-	public Result calculPoisByZone(float minLat, float maxLat, float minLon, float maxLon, List<Poi> listPois);
+	public Result calculPoisByZone(float minLat, float minLon, List<Poi> listPois);
 	public Set<String> getMostFilledAreas(int nbZones, List<Poi> listPois);
 	
 	

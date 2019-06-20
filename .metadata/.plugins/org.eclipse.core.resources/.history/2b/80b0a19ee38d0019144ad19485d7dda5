@@ -1,0 +1,12 @@
+package fr.happn.poi;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PoiProjectApplication {
+
+	public static void main(String[] args) {
+		System.out.println("okkkkk");
+	}
+
+}

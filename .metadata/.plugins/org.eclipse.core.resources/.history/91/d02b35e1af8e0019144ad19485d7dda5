@@ -1,0 +1,23 @@
+package fr.happn.poi;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+
+@SpringBootApplication
+public class PoiProjectApplication {
+
+
+	public static void main(String[] args) throws IOException {
+		SpringApplication.run(PoiProjectApplication.class, args);
+   
+        
+	}
+	
+
+}

@@ -63,11 +63,11 @@ public class PoiServiceImpl implements PoiService {
 	}
 
 	@Override
-	public Result calculPoisByZone(float minLat, float maxLat, float minLon, float maxLon, List<Poi> listPois) {
+	public Result calculPoisByZone(float minLat, float minLon, List<Poi> listPois) {
 		
 		List<Poi> poisByZone = new ArrayList<>();
 		for(Poi poi : listPois) {
-			if(poi.getLat() > minLat && poi.getLat() < maxLat && poi.getLon() > minLon && poi.getLon() < maxLon) {
+			if(poi.getLat() > minLat && poi.getLon() > minLon) {
 				poisByZone.add(poi);
 			}
 		}
