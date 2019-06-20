@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\EI-PC-01-06-16\Documents\happn_projet2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2017289183.index
-3615858851.index
-1663183643.index
-1615209010.index
-2027356619.index
-3154547460.index
