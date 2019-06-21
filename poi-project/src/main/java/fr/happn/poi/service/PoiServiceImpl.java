@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import fr.happn.poi.model.Area;
 import fr.happn.poi.model.Poi;
 import fr.happn.poi.model.PoiRound;
 
@@ -27,14 +28,13 @@ import fr.happn.poi.model.PoiRound;
 public class PoiServiceImpl implements PoiService {
 	
     private static final Logger logger = LogManager.getLogger(PoiServiceImpl.class);
-    private static final String SEPARATOR_COMMA = ", ";
-    private static final String SEPARATOR_COLONS = ":";
     private static final String SEPARATOR_TAB = " ";
-    private static final String MIN_LAT = "minLat";
-    private static final String MAX_LAT = "maxLat";
-    private static final String MIN_LON = "minLon";
-    private static final String MAX_LON = "maxLon";
 
+    /**
+     * Parse un fichier d entree au format TSV
+     * @param multipart fichier d entree a parser au format TSV
+     * @return liste de POI (points d interet)
+     */
 	@Override
 	public List<Poi> parsePoi(MultipartFile multipart) {
 
@@ -61,6 +61,13 @@ public class PoiServiceImpl implements PoiService {
 		return result;
 	}
 
+	/**
+	 * Calcul du nombre de POI (points d interets) dans une zone 
+	 * @param minLat latitude minimale
+	 * @param minLon longitude minimale
+	 * @param listPois les points d interet
+	 * @return les n zones les plus denses
+	 */
 	@Override
 	public Double calculPoisByZone(float minLat, float minLon, List<Poi> listPois) {
 		double compteur = 0;
@@ -71,9 +78,15 @@ public class PoiServiceImpl implements PoiService {
 		}
 		return compteur;
 	}
-
+	
+	/**
+	 * Recupere les n zones les plus denses
+	 * @param nbZones le nombre de zones les plus denses a recuperer
+	 * @param listPois les points d interet
+	 * @return les n zones les plus denses
+	 */
 	@Override
-	public Set<String> getMostFilledAreas(int nbZones, List<Poi> listPois) {
+	public Set<Area> getMostFilledAreas(int nbZones, List<Poi> listPois) {
 		
 		List<PoiRound> listPoiRounded = new ArrayList<>();
 		for(Poi poi : listPois) {
@@ -87,15 +100,20 @@ public class PoiServiceImpl implements PoiService {
 			listPoiRounded.add(poiRound);
 			logger.debug(poiRound.toString());
 		}
-		Map<String, Integer> mapPoiSorted = this.countAreasFilled(listPoiRounded);
-		mapPoiSorted.forEach((k,v)->logger.debug("Key : " + k + " Value : " + v));
-		Map<String , Integer> result = mapPoiSorted.entrySet().stream()
+		Map<Area, Integer> mapPoiSorted = this.countAreasFilled(listPoiRounded);
+		mapPoiSorted.forEach((k,v)->logger.debug("Key : " + k.toString() + " Value : " + v));
+		Map<Area , Integer> result = mapPoiSorted.entrySet().stream()
 			    .limit(nbZones)
 			    .collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
 		
 		return result.keySet();
 	}
 	
+	/**
+	 * Arrondit un nombre decimal au demi entier inferieur le plus proche
+	 * @param value le decimal a arrondir
+	 * @return le decimal arrondi
+	 */
 	private float roundLowHalf(float value) {
 		value = value < 0?value<-0.5f?-1f:-0.5f:value<0.5?0f:0.5f;
 		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
@@ -104,6 +122,11 @@ public class PoiServiceImpl implements PoiService {
 		return Float.valueOf(df.format(value));
 	}
 	
+	/**
+	 * Recupere la partie decimale d un nombre decimal
+	 * @param value le nombre decimal
+	 * @return la partie decimale du nombre decimal
+	 */
 	private float getDecimalValue(float value) {
 		value = value - (int)value;
 		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
@@ -112,9 +135,13 @@ public class PoiServiceImpl implements PoiService {
 		return Float.valueOf(df.format(value));
 	}
 	
-	
-	private Map<String, Integer> countAreasFilled(List<PoiRound> listPoiRound){
-		Map<String, Integer> mapCountAreasFilled = new HashMap<>();
+	/**
+	 * recupere les zones et le nombre de POI (points d interets) pour chaque zone
+	 * @param listPoiRound
+	 * @return les zones et le nombre de POI (points d interets) dans chacune
+	 */
+	private Map<Area, Integer> countAreasFilled(List<PoiRound> listPoiRound){
+		Map<Area, Integer> mapCountAreasFilled = new HashMap<>();
 		for(PoiRound poiRound : listPoiRound) {
 			float lat = poiRound.getPoi().getLat();
 			float latMin = lat-0.5f;
@@ -141,7 +168,7 @@ public class PoiServiceImpl implements PoiService {
 			}
 			
 		}
-		LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+		LinkedHashMap<Area, Integer> reverseSortedMap = new LinkedHashMap<>();
 		mapCountAreasFilled.entrySet()
 	    .stream()
 	    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -149,15 +176,19 @@ public class PoiServiceImpl implements PoiService {
 		return reverseSortedMap;
 	}
 	
-	private Map<String, Integer> fillMapAreas(Map<String, Integer> mapCountAreasFilled, float latMin, float latMax, float lonMin, float lonMax){
-		mapCountAreasFilled.put(MIN_LAT+ SEPARATOR_COLONS +latMin+ SEPARATOR_COMMA + MAX_LAT + SEPARATOR_COLONS +latMax
-				+SEPARATOR_COMMA +MIN_LON+ SEPARATOR_COLONS+lonMin+SEPARATOR_COMMA+MAX_LON+ SEPARATOR_COLONS +lonMax,
-				mapCountAreasFilled.get(MIN_LAT + SEPARATOR_COLONS +latMin+SEPARATOR_COMMA+MAX_LAT+ SEPARATOR_COLONS +latMax
-						+SEPARATOR_COMMA+MIN_LON+ SEPARATOR_COLONS + lonMin + SEPARATOR_COMMA + MAX_LON + SEPARATOR_COLONS + lonMax) != null? 
-						mapCountAreasFilled.get(MIN_LAT + SEPARATOR_COLONS + latMin + SEPARATOR_COMMA + MAX_LAT + SEPARATOR_COLONS + latMax 
-								+SEPARATOR_COMMA + MIN_LON + SEPARATOR_COLONS + lonMin + SEPARATOR_COMMA + MAX_LON + SEPARATOR_COLONS + lonMax)+1:1);
+	/**
+	 * Renseigne les informations d une zone avec le nombre de POI associes
+	 * @param mapCountAreasFilled la map contenant les zones et le nombre points d interets associes
+	 * @param latMin latitude minimale 
+	 * @param latMax latitude maximale
+	 * @param lonMin longitude minimale
+	 * @param lonMax longitude maximale
+	 * @return la map remplie avec la nouvelle zone et le nombre de POI dedans
+	 */
+	private Map<Area, Integer> fillMapAreas(Map<Area, Integer> mapCountAreasFilled, float latMin, float latMax, float lonMin, float lonMax){
+		Area area = new Area(latMin, latMax, lonMin, lonMax);
+		mapCountAreasFilled.put(area, mapCountAreasFilled.get(area) != null? mapCountAreasFilled.get(area)+1:1);
 		return mapCountAreasFilled;
 		}
-
 
 }

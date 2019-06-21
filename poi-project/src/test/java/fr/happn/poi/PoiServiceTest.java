@@ -20,6 +20,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
+import fr.happn.poi.model.Area;
 import fr.happn.poi.model.Poi;
 import fr.happn.poi.service.PoiService;
 
@@ -34,7 +35,7 @@ public class PoiServiceTest {
 	MultipartFile multipart;
 	
 	private static List<Poi> listPois;
-	private static Set<String> set;
+	private static Set<Area> areas;
 	
 	@Before
 	public void init() {
@@ -58,9 +59,9 @@ public class PoiServiceTest {
 	
 	@Test
 	public void getMostFilledAreasTest() {
-		set = initializeAreas();
-		Set<String> result = poiServ.getMostFilledAreas(2, listPois);
-		assertEquals(set, result);
+		areas = initializeAreas();
+		Set<Area> result = poiServ.getMostFilledAreas(2, listPois);
+		assertEquals(areas, result);
 	}
 	
 	
@@ -76,11 +77,11 @@ public class PoiServiceTest {
 		listPois.add(new Poi("id8", -2.1f, 38.1f));
 	}
 	
-	private Set<String> initializeAreas() {
-		set = new HashSet<String>();
-		set.add("minLat:-2.5, maxLat:-2.0, minLon:38.0, maxLon:38.5");
-		set.add("minLat:6.5, maxLat:7.0, minLon:-7.0, maxLon:-6.5");
-		return set;
+	private Set<Area> initializeAreas() {
+		areas = new HashSet<Area>();
+		areas.add(new Area(-2.5f, -2f, 38f, 38.5f));
+		areas.add(new Area(6.5f, 7.0f, -7.0f, -6.5f));
+		return areas;
 	}
 
 }

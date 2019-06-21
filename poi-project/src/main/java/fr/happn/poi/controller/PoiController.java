@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import fr.happn.poi.model.Area;
 import fr.happn.poi.model.Poi;
 import fr.happn.poi.service.PoiService;
 
@@ -30,6 +31,13 @@ public class PoiController {
 	@Autowired
 	private PoiService service;
 
+	/**
+	 * Parse un fichier d entree au format TSV
+	 * @param multipart fichier d entree a parser au format TSV
+	 * @param request requete HTTP
+	 * @param response reponse HTTP
+	 * @return liste de POI (points d interets)
+	 */
 	@PostMapping("/parse")
 	public List<Poi> parsePoi(@RequestBody MultipartFile multipart, HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("DEBUT : Methode parse");
@@ -40,22 +48,36 @@ public class PoiController {
 	}
 	
 
+	/**
+	 * Calcul du nombre de POI dans une zone 
+	 * @param minLat latitude minimale
+	 * @param mintLon longitude minimale
+	 * @param request requete HTTP
+	 * @param response reponse HTTP
+	 * @return le nombre de POI (points d interets) dans la zone
+	 */
 	@GetMapping("/poisbyzone/{minLat}/{mintLon}")
 	public Double calculPoisByZone(@PathVariable float minLat, @PathVariable float mintLon, HttpServletRequest request, HttpServletResponse response){
 		logger.debug("DEBUT : Methode poisbyzone");
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute(POI_ATTRIBUTE);
 		if(listPois == null) {
 			response.setStatus(HttpStatus.NO_CONTENT.value());
-			logger.debug("FIN : Methode poisbyzone listPois null");
+			logger.debug("FIN : Methode poisbyzone");
 			return null;
 		}
 		double compteur = service.calculPoisByZone(minLat, mintLon, listPois);
 		logger.debug("FIN : Methode poisbyzone");
 		return compteur;
 	}
-	
+	/**
+	 * Recupere les n zones les plus denses
+	 * @param nbZones le nombre de zones les plus denses a recuperer
+	 * @param request requete HTTP
+	 * @param response reponse HTTP
+	 * @return les n zones les plus denses
+	 */
 	@GetMapping("mostfilledareas/{nbZones}")
-	public Set<String> getMostFilledAreas(@PathVariable int nbZones, HttpServletRequest request, HttpServletResponse response) {
+	public Set<Area> getMostFilledAreas(@PathVariable int nbZones, HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("DEBUT : Methode mostfilledareas");
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute(POI_ATTRIBUTE);
 		if(listPois == null) {
@@ -63,7 +85,7 @@ public class PoiController {
 			logger.debug("FIN : Methode mostfilledareas");
 			return null;
 		}
-		Set<String> result = service.getMostFilledAreas(nbZones, listPois);
+		Set<Area> result = service.getMostFilledAreas(nbZones, listPois);
 		logger.debug("FIN : Methode mostfilledareas");
 		return result;
 	}
