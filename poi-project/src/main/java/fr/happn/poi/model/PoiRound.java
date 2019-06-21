@@ -1,5 +1,8 @@
 package fr.happn.poi.model;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class PoiRound {
 	
 	private boolean isLatRound;

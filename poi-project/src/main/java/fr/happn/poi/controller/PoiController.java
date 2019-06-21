@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.happn.poi.model.Poi;
-import fr.happn.poi.model.Result;
 import fr.happn.poi.service.PoiService;
 
 @RestController
@@ -36,37 +35,23 @@ public class PoiController {
 		logger.debug("DEBUT : Methode parse");
 		List<Poi> listPois = service.parsePoi(multipart);
 		request.getSession().setAttribute(POI_ATTRIBUTE, listPois);
-    	System.out.println("wesh" + listPois.size());
 		logger.debug("FIN : Methode parse");
-		return listPois;
-	}
-	
-	@GetMapping("/getall")
-	public List<Poi> getAllPois(HttpServletRequest request, HttpServletResponse response){
-		logger.debug("DEBUT : Methode getall");
-		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute(POI_ATTRIBUTE);
-		if(listPois == null) {
-			response.setStatus(HttpStatus.NO_CONTENT.value());
-			logger.debug("FIN : Methode getall");
-			return null;
-		}
-		logger.debug("FIN : Methode getall");
 		return listPois;
 	}
 	
 
 	@GetMapping("/poisbyzone/{minLat}/{mintLon}")
-	public Result calculPoisByZone(@PathVariable float minLat, @PathVariable float mintLon, HttpServletRequest request, HttpServletResponse response){
+	public Double calculPoisByZone(@PathVariable float minLat, @PathVariable float mintLon, HttpServletRequest request, HttpServletResponse response){
 		logger.debug("DEBUT : Methode poisbyzone");
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute(POI_ATTRIBUTE);
 		if(listPois == null) {
 			response.setStatus(HttpStatus.NO_CONTENT.value());
-			logger.debug("FIN : Methode poisbyzone");
+			logger.debug("FIN : Methode poisbyzone listPois null");
 			return null;
 		}
-		Result result = service.calculPoisByZone(minLat, mintLon, listPois);
+		double compteur = service.calculPoisByZone(minLat, mintLon, listPois);
 		logger.debug("FIN : Methode poisbyzone");
-		return result;
+		return compteur;
 	}
 	
 	@GetMapping("mostfilledareas/{nbZones}")

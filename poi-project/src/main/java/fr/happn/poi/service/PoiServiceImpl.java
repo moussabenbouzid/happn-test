@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import fr.happn.poi.model.Poi;
 import fr.happn.poi.model.PoiRound;
-import fr.happn.poi.model.Result;
 
 @Component
 public class PoiServiceImpl implements PoiService {
@@ -63,15 +62,14 @@ public class PoiServiceImpl implements PoiService {
 	}
 
 	@Override
-	public Result calculPoisByZone(float minLat, float minLon, List<Poi> listPois) {
-		
-		List<Poi> poisByZone = new ArrayList<>();
+	public Double calculPoisByZone(float minLat, float minLon, List<Poi> listPois) {
+		double compteur = 0;
 		for(Poi poi : listPois) {
 			if(poi.getLat() > minLat && poi.getLon() > minLon) {
-				poisByZone.add(poi);
+				compteur++;
 			}
 		}
-		return new Result(poisByZone, poisByZone.size());
+		return compteur;
 	}
 
 	@Override
