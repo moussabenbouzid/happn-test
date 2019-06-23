@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>fr.happn.poi</groupId>
 	<artifactId>poi-project</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<packaging>war</packaging>
 	<name>poi-project</name>
 	<description>Happn test</description>

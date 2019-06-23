@@ -66,13 +66,13 @@ public class PoiServiceImpl implements PoiService {
 	 * @param minLat latitude minimale
 	 * @param minLon longitude minimale
 	 * @param listPois les points d interet
-	 * @return les n zones les plus denses
+	 * @return les points d interet de la zone demandee
 	 */
 	@Override
 	public Double calculPoisByZone(float minLat, float minLon, List<Poi> listPois) {
 		double compteur = 0;
 		for(Poi poi : listPois) {
-			if(poi.getLat() > minLat && poi.getLon() > minLon) {
+			if(poi.getLat() >= minLat && poi.getLon() >= minLon) {
 				compteur++;
 			}
 		}
@@ -100,7 +100,7 @@ public class PoiServiceImpl implements PoiService {
 			listPoiRounded.add(poiRound);
 			logger.debug(poiRound.toString());
 		}
-		Map<Area, Integer> mapPoiSorted = this.countAreasFilled(listPoiRounded);
+		Map<Area, Integer> mapPoiSorted = countAreasFilled(listPoiRounded);
 		mapPoiSorted.forEach((k,v)->logger.debug("Key : " + k.toString() + " Value : " + v));
 		Map<Area , Integer> result = mapPoiSorted.entrySet().stream()
 			    .limit(nbZones)
@@ -110,7 +110,7 @@ public class PoiServiceImpl implements PoiService {
 	}
 	
 	/**
-	 * Arrondit un nombre decimal au demi entier inferieur le plus proche
+	 * Arrondit une partie decimale au decimal demi entier inferieur le plus proche
 	 * @param value le decimal a arrondir
 	 * @return le decimal arrondi
 	 */
