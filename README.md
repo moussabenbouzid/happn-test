@@ -3,7 +3,7 @@
 Présentation de l'application:
 - Poi-project est une application permettant de calculer les points d'intérêt (POI) d'une zone et de trouver les
 zones les plus denses sur un plan à deux dimensions, latitude et longitude.
-- Le plan est une grille sur laquelle on se déplace par incréments de 0,5 en latitude et en longitude
+- Le plan est une grille sur laquelle on se déplace par incrément de 0,5 en latitude et en longitude en partant de l'origine du repère
 - Un POI est caractérisé par une latitude et une longitude
 - Plus une zone contient de POI et plus elle est dense
 
