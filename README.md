@@ -55,7 +55,9 @@ Pour déterminer la zone dans laquelle ces POI se situent, on simplifie le probl
 Les deux POI sont donc réévalués aux positions suivantes: latitude de -4.5, et longitude 3,5
 
 Pour connaitre le nombre de POI présents dans une zone, il suffit de compter le nombre de POI ayant les mêmes positions réévaluées.
-Ces derniers seront dans la zone entre la position réévaluée et la position incrémentée de 0,5
+Ces derniers seront dans la zone entre la position réévaluée et la position incrémentée de 0,5.
+
+On obtient ensuite les N zones les plus denses en triant de façon descendante la liste des POI ayant les mêmes coordonnées réévaluées 
 
 Cas des POI ayant leurs latitude et/ou longitude non réévaluées:
 
@@ -63,14 +65,20 @@ Cela signifie qu'ils appartiennent à deux zones en latitude et/ou deux zones en
 
 Cas du POI de latitude -4,5 et de longitude 3,6
 
+Latitude réévaluée : -4,5     Longitude réévaluée : 3.5
+
 La latitude de ce POI n'a pas été réévaluée.
-Cette particularité signifie que ce POI appartient à deux zones :
+
+Cette particularité implique que ce POI appartient à deux zones :
 
 {"minLat":-4,5, "maxLat":-4, "minLon":3,5, "maxLon":4}
 
 {"minLat":-5, "maxLat":-4,5, "minLon":3,5, "maxLon":4}
 
 Cas du POI de latitude -4,5 et de longitude 3,5
+
+Latitude réévaluée : -4,5     Longitude réévaluée : 3.5
+
 Ce POI appartient à quatre zones:
 
 {"minLat":-4,5, "maxLat":-4, "minLon":3,5, "maxLon":4}
