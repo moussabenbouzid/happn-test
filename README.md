@@ -44,28 +44,43 @@ Services disponibles :
 
 Raisonnement pour le calcul des zones les plus denses:
 un POI est un point du plan, caractérisé par une latitude et une longitude.
-Soit le POI de latitude -4,2 et de longitude 3,6
+
+Soit le POI de latitude -4,2 et de longitude 3,6.
 Soit un deuxième POI de latitude -4,4 et de longitude 3,7
+
 Ces deux points sont dans la zone {"minLat":-4,5, "maxLat":-4, "minLon":3,5, "maxLon":4}
-Pour déterminer la zone dans laquelle ces POI se situent, on simplifie le problème en réévaluant leurs coordonnées au demi entier inférieur le plus proche
+
+Pour déterminer la zone dans laquelle ces POI se situent, on simplifie le problème en réévaluant leurs coordonnées au demi entier inférieur le plus proche.
+
 Les deux POI sont donc réévalués aux positions suivantes: latitude de -4.5, et longitude 3,5
+
 Pour connaitre le nombre de POI présents dans une zone, il suffit de compter le nombre de POI ayant les mêmes positions réévaluées.
 Ces derniers seront dans la zone entre la position réévaluée et la position incrémentée de 0,5
 
 Cas des POI ayant leurs latitude et/ou longitude non réévaluées:
-Cela signifie qu'ils appartiennent à deux zones en latitude et/ou deux zones en longitude
+
+Cela signifie qu'ils appartiennent à deux zones en latitude et/ou deux zones en longitude.
+
 Cas du POI de latitude -4,5 et de longitude 3,6
-La latitude de ce POI n'a pas été réévaluée
+
+La latitude de ce POI n'a pas été réévaluée.
 Cette particularité signifie que ce POI appartient à deux zones :
+
 {"minLat":-4,5, "maxLat":-4, "minLon":3,5, "maxLon":4}
+
 {"minLat":-5, "maxLat":-4,5, "minLon":3,5, "maxLon":4}
 
 Cas du POI de latitude -4,5 et de longitude 3,5
 Ce POI appartient à quatre zones:
+
 {"minLat":-4,5, "maxLat":-4, "minLon":3,5, "maxLon":4}
+
 {"minLat":-5, "maxLat":-4,5, "minLon":3,5, "maxLon":4}
+
 {"minLat":-4,5, "maxLat":-4, "minLon":3, "maxLon":3,5}
+
 {"minLat":-5, "maxLat":-4,5, "minLon":3, "maxLon":3,5}
+
 Cette particularité est prise en compte par l'application
 
 GL & HF !
