@@ -33,7 +33,7 @@ Services disponibles :
 1er service :
 - Parse un fichier d'entrée .TSV contenant des POI
 (Exemple dans le fichier poi.tsv disponible dans le .war sous WEB-INF\classes\static)
-- Retourne la liste de POI chargés en session
+- Retourne la liste de POI chargée en session
 
 2ème service:
 - Prend en entrée deux décimaux, représentant une latitude minimale et une longitude minimale.
