@@ -25,9 +25,9 @@ Exemple:
 - Démarrer l'application Postman
 
 Services disponibles :
-1) {endPoint}/poi-project-0.0.1-RELEASE.war/parse  -- (POST)
-1) {endPoint}/poi-project-0.0.1-RELEASE.war/poisbyzone/{latMin}/{latMax} -- (GET)
-3) {endPoint}/poi-project-0.0.1-RELEASE.war/mostfilledareas/{nbZones} -- (GET)
+1) {endPoint}/poi-project-0.0.1-RELEASE/parse  -- (POST)
+1) {endPoint}/poi-project-0.0.1-RELEASE/poisbyzone/{latMin}/{latMax} -- (GET)
+3) {endPoint}/poi-project-0.0.1-RELEASE/mostfilledareas/{nbZones} -- (GET)
 
 
 1er service :
