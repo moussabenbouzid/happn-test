@@ -40,7 +40,7 @@ Services disponibles :
 - Retourne tous les POIs de la zone demandée
 
 3ème service:
-- Calcule des n zones les plus denses, avec n comme point d'entrée du service.
+- Calcul des n zones les plus denses, avec n comme point d'entrée du service.
 
 Raisonnement pour le calcul des zones les plus denses:
 un POI est un point du plan, caractérisé par une latitude et une longitude.
