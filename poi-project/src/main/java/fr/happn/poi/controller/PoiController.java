@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,8 +58,8 @@ public class PoiController {
 	 * @param response reponse HTTP
 	 * @return le nombre de POI (points d interets) dans la zone
 	 */
-	@GetMapping("/poisbyzone/{minLat}/{mintLon}")
-	public Double calculPoisByZone(@PathVariable float minLat, @PathVariable float mintLon, HttpServletRequest request, HttpServletResponse response){
+	@GetMapping("/poisbyzone")
+	public Double calculPoisByZone(@RequestParam("minlat") float minLat, @RequestParam("minlon") float mintLon, HttpServletRequest request, HttpServletResponse response){
 		logger.debug("DEBUT : Methode poisbyzone");
 		List<Poi> listPois = (List<Poi>) request.getSession().getAttribute(POI_ATTRIBUTE);
 		if(listPois == null) {
