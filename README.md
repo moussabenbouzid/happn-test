@@ -26,7 +26,7 @@ Exemple:
 
 Services disponibles :
 1) {endPoint}/poi-project-0.0.1-RELEASE/parse  -- (POST)
-1) {endPoint}/poi-project-0.0.1-RELEASE/poisbyzone/{latMin}/{latMax} -- (GET)
+1) {endPoint}/poi-project-0.0.1-RELEASE/poisbyzone?minlat={minLat}&minlon={minlon} -- (GET)
 3) {endPoint}/poi-project-0.0.1-RELEASE/mostfilledareas/{nbZones} -- (GET)
 
 
